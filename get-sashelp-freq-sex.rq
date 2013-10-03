@@ -1,0 +1,10 @@
+PREFIX ds: <http://example.org/sasdataset#> 
+PREFIX dsv: <http://example.org/sasdataset-variable#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+SELECT DISTINCT ?Sex (count(*) as ?Count)
+WHERE {
+?row rdf:type ds:SASHELP.CLASS ;
+ dsv:Sex ?Sex ;
+}
+GROUP BY ?Sex
