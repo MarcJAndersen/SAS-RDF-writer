@@ -56,6 +56,8 @@ SELECT * {
  dsv:Weight ?Weight .
 }
 
+Alternatively, use file in get-sashelp-class.rq
+ruby s-query --service http://localhost:3030/ds/query --query=get-sashelp-class.rq
 
 */
 
@@ -123,7 +125,7 @@ data _null_;
 
     do j=1 to nobs;
         rc= fetchobs(dsid, j);
-        stext= cats("_:", j);
+        stext= cats("_:", j, "_", indsn );
         ptext= "rdf:type";
         otext= cats("ds:", indsn );
         indentpos=1;
@@ -156,9 +158,9 @@ data _null_;
                 otext= cats(quote(strip(vvalue(xsvaluen))),"^^xsd:float");
                 end;
             when (vartype(dsid,i)="N") do;
-                /* Assuming everything else is decimal */
+                /* Assuming everything else is float and representing as float */
                 xsvaluen= getvarn( dsid, i);
-                otext= cats(quote(strip(xsvaluen)),"^^xsd:decimal");
+                otext= cats(quote(strip(put(xsvaluen,e32.))),"^^xsd:float");
                 end;
             when (vartype(dsid,i)="C") do;
                 xsvaluec= getvarc( dsid, i);

@@ -1,0 +1,13 @@
+PREFIX ds: <http://example.org/sasdataset#> 
+PREFIX dsv: <http://example.org/sasdataset-variable#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+SELECT * {
+?row rdf:type ds:SASHELP.CLASS ;
+ dsv:Name ?Name ;
+ dsv:Sex ?Sex ;
+ dsv:Age ?Age ; 
+ dsv:Height ?Height;
+ dsv:Weight ?Weight .
+}
+
